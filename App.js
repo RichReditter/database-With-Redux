@@ -2,23 +2,28 @@ import React,{useEffect} from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { toAdd, toDelete, selectCount, addAsync} from "./features/usersSlice.js";
 import './App.css';
+import DataBase from './DataBase.js'; //
+import FormInput from './FormInput.js';
 
 function App() {
-  const url = 'https://62a6c1e2bedc4ca6d7b9735c.mockapi.io/users'
   const dispatch = useDispatch();
   const users = useSelector(selectCount);
-  console.log(users)
+  
   useEffect(() => {
     dispatch(addAsync());
-  }, [dispatch])
-  
+  }, [])
+  console.log(users)
   
   return (
-    <div className="App">
-      {/* <Form/>
-      <DataBase/> */}
+    <div >
+      <FormInput/>
+      <DataBase users={users}/> 
     </div>
   );
 }
 
 export default App;
+
+// что за ошибка вылезает?
+// как удалить что-то из моего массива в store?
+// где и почему вызывается мой массив из store два раза? ( бывает три )
